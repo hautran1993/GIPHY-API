@@ -1,19 +1,36 @@
 $(document).ready(function(){
 //array of movies
-var heroes = ["Superman", "Batman", "WonderWomen", "the flash"]
+	var heroes = ["Superman", "Batman", "WonderWomen", "the flash"]
+	var dcHero = "green lantern";
+	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+	        dcHero + "&api_key=391EY2HB2XOmoAjgWbhmSXTDiuJulT7V";
+	        
 
-	// $(".gif").on("click", function () {
-	// var dcHero= $(this).attr("data-person");
-	// var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
- //        dcHero + "&api_key=dc6zaTOxFJmzC&limit=10";    
 
-	// 	$.ajax({
-	// 	  	url: queryURL,
-	// 	  	method: "GET"
-	// 	}).done(function(response){
-	// 		console.log(response) 
-	// 	})
-	// });
+	$("#hero-button").on("click", function () {
+	var dcHero= $(this).attr("data-person");
+	   
+		$.ajax({
+		  	url: queryURL,
+		  	method: "GET"
+		})
+		//after the data from ajaz comback then run this command
+		.done(function(response) {
+			
+			//
+			var imageUrl = response.data.image_original_URL;
+
+			var heroImg = $("<img>");
+
+			var btn = $("<button>");
+
+			heroImg.attr("src", imageUrl);
+
+
+			$("#hero-button").prepend(heroImg);
+		})
+
+	});
 
 	//function for displaying hero data
 	function renderButtons() {
@@ -34,7 +51,7 @@ var heroes = ["Superman", "Batman", "WonderWomen", "the flash"]
 			$("#hero-button").append(a);
 		}
 	}
-
+	//function to add another button
 	$("#add-hero").on("click", function(envent) {
 		//event.preventDefault() prevents the form from entering while adding another button
 		event.preventDefault();
@@ -44,9 +61,8 @@ var heroes = ["Superman", "Batman", "WonderWomen", "the flash"]
 		heroes.push(hero);
 		//calling renderbutton function will run the loop for all of the heroes
 		renderButtons();
-	})
+	});
 	//display the initial buttons from the og heroes
 	renderButtons();
-	
 	
 }); 
