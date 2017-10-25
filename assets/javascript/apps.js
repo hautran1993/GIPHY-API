@@ -1,14 +1,14 @@
 $(document).ready(function(){
 //array of movies
-	var heroes = ["Superman", "Batman", "WonderWomen", "the flash"]
-	var dcHero = "green lantern";
+	var heroes = ["superman", "Batman", "WonderWomen", "the flash"]
+//DELEGATION
+	$(document).on("click", "button", function () {
+	$("#gifHere").empty();
+	var dcHero= $(this).attr("data-name");
+	console.log(dcHero)
 	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-	        dcHero + "&api_key=391EY2HB2XOmoAjgWbhmSXTDiuJulT7V";
+        dcHero + "&api_key=dc6zaTOxFJmzC&limit=10"
 	        
-
-
-	$("#hero-button").on("click", function () {
-	var dcHero= $(this).attr("data-person");
 	   
 		$.ajax({
 		  	url: queryURL,
@@ -16,21 +16,47 @@ $(document).ready(function(){
 		})
 		//after the data from ajaz comback then run this command
 		.done(function(response) {
+			console.log(response)
 			
-			//
-			var imageUrl = response.data.image_original_URL;
+			//so you don't have to use the long code repeatedly
+			var result = response.data
+			console.log(result);
 
-			var heroImg = $("<img>");
+			for (var i = 0; i < result.length; i++){
 
-			var btn = $("<button>");
+				var heroDiv = $("<div>");
 
-			heroImg.attr("src", imageUrl);
+				var h = $("<p>").text("rating is " + result[i].rating);
 
+				var heroImg = $("<img>");
+				//result[i].url
 
-			$("#hero-button").prepend(heroImg);
-		})
+				heroImg.attr("src", result[i].images.fixed_height.url);
+				heroImg.attr("data-still", result[i].images.fixed_height_still.url);
+				heroImg.attr("data-animate", result[i].images.fixed_height.url);
+				heroImg.attr("data-state", "animate");
+				heroDiv.html(h);
+				heroDiv.html(heroImg);
+
+				$("#gifHere").append(heroDiv);
+			}
+		
+		});
 
 	});
+	$(document).on("click", "img", function(){
+		//grab the state that is in
+		var state = $(this).attr("data-state")
+		if (state === "animate") {
+			$(this).attr("src", $(this).attr("data-still"))
+			$(this).attr("data-state", "still");
+		} else{
+			$(this).attr("src", $(this).attr("data-animate"))
+			$(this).attr("data-state", "animate");
+		}
+
+	}); 
+
 
 	//function for displaying hero data
 	function renderButtons() {
