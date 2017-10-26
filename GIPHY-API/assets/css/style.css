@@ -1,4 +1,36 @@
 body {
-	background-color: limegreen;
+	background-color: lightgrey;
 }
 
+button {
+	margin: 10px;
+}
+
+.jumbotron {
+	height: 370px; 
+}
+
+.text-center {
+ 	margin-left: 680px;
+}
+
+#hero-button {
+ 	padding-left: 400px;
+}
+
+#hero-form {
+	padding-left: 300px;
+}
+
+#add-hero {
+	margin-left: 300px;
+	margin-top: 50px;
+}
+
+#text {
+	margin-left: 230px;
+}
+
+#bottom-line {
+	margin-left: 20px;
+}

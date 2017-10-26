@@ -1,6 +1,6 @@
 $(document).ready(function(){
 //array of movies
-	var heroes = ["Superman", "Batman", "Hawkgirl", "Wonder Women", "AquaMan"]
+	var heroes = ["superman", "Batman", "WonderWomen", "the flash"]
 //DELEGATION
 	$(document).on("click", "button", function () {
 	$("#gifHere").empty();
