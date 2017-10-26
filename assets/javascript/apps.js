@@ -35,6 +35,7 @@ $(document).ready(function(){
 				heroImg.attr("data-still", result[i].images.fixed_height_still.url);
 				heroImg.attr("data-animate", result[i].images.fixed_height.url);
 				heroImg.attr("data-state", "animate");
+				
 				heroDiv.html(h);
 				heroDiv.html(heroImg);
 
