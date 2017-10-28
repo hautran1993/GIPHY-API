@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 <head>
 
@@ -13,16 +13,34 @@
 </head>
 <body>
 
-<div id="hero-button"></div>
+    <div class="jumbotron" style="background-image: url(assets/images/jumbo1.jpeg);">
+	      <h1 class= "text-center" style="color: white">Giphynator
+	      </h1>
+    </div> 
+<section >
+    <div class="btn-primary" id="hero-button"></div>
+</section>    
+    <br>
 
-<form id="hero-form">
-	<label for="hero-input">Add a Hero Bruhhhhh</label>
-      <input type="text" id="hero-input"><br>
+    <form id="hero-form">
+    	<label for="hero-input" id="text"></label>
 
-      <!-- Button triggers new movie to be added -->
-      <input id="add-hero" type="submit" value="Add a hero Bruhhhhh">
-      <div id="gifHere"></div>
-</form>
+        <input type="text" id="hero-input"><br>
+
+          <!-- Button triggers new movie to be added -->
+        <input id="add-hero" type="submit" value="Add a Hero Bruhhhhh">
+
+		
+	       <div class="container-panel">
+	            <div class="row pictures">
+	              <div class="col-md-12">
+	                  <div id="gifHere"></div>
+	              </div>
+	          </div>
+	      </div>
+
+    </form>
+    
 
 
 

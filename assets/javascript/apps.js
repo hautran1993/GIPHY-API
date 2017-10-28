@@ -1,13 +1,13 @@
 $(document).ready(function(){
 //array of movies
-	var heroes = ["superman", "Batman", "WonderWomen", "the flash"]
+	var heroes = ["SpiderMan","Rocket Racoon", "Groot", "Spawn", "Batman", "Wonder Women", "AquaMan", "Hawkgirl", "Green Lantern",
+				  "Hulk", "Super-Girl", "Wolverine","Thor" , "Raven", "Robin", ]
 //DELEGATION
 	$(document).on("click", "button", function () {
 	$("#gifHere").empty();
-	var dcHero= $(this).attr("data-name");
-	console.log(dcHero)
+	var hero= $(this).attr("data-name");
 	var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        dcHero + "&api_key=dc6zaTOxFJmzC&limit=10"
+        hero + "&api_key=dc6zaTOxFJmzC&limit=15"
 	        
 	   
 		$.ajax({
@@ -16,11 +16,9 @@ $(document).ready(function(){
 		})
 		//after the data from ajaz comback then run this command
 		.done(function(response) {
-			console.log(response)
 			
 			//so you don't have to use the long code repeatedly
 			var result = response.data
-			console.log(result);
 
 			for (var i = 0; i < result.length; i++){
 
@@ -29,6 +27,7 @@ $(document).ready(function(){
 				var h = $("<p>").text("rating is " + result[i].rating);
 
 				var heroImg = $("<img>");
+				heroImg.addClass("custom-class");
 				//result[i].url
 
 				heroImg.attr("src", result[i].images.fixed_height.url);
@@ -88,6 +87,7 @@ $(document).ready(function(){
 		heroes.push(hero);
 		//calling renderbutton function will run the loop for all of the heroes
 		renderButtons();
+		$("#hero-input").val("")
 	});
 	//display the initial buttons from the og heroes
 	renderButtons();
